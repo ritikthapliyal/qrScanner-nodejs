@@ -1,28 +1,21 @@
-import React, { useState } from 'react';
-import Html5QrcodePlugin from './Html5Qr';
-import ResultContainerPlugin from './Resultcontainerplugin';
-const App = (props) => {
-    const [decodedResults, setDecodedResults] = useState([]);
-    const onNewScanResult = (decodedText, decodedResult) => {
-        console.log("App [result]", decodedResult);
-        setDecodedResults(prev => [...prev, decodedResult]);
-    };
-    return (
-        <div className="App">
-            <section className="App-section">
-                <div className="App-section-title"> Html5-qrcode React demo</div>
-                <br />
-                <br />
-                <br />
-                <Html5QrcodePlugin
-                    fps={10}
-                    qrbox={250}
-                    disableFlip={false}
-                    qrCodeSuccessCallback={onNewScanResult}
-                />
-                <ResultContainerPlugin results={decodedResults} />
-            </section>
-        </div>
-    );
-};
+import {BrowserRouter,Route, Routes} from 'react-router-dom'
+import Login from './Components/Login'
+import Dashboard from './Components/Dashboard'
+import Scanner from './Components/Scanner'
+
+function App() {
+
+  return (
+      <BrowserRouter>
+          <div className="App">
+            <Routes>
+                <Route path='/' Component={Login}></Route>
+                <Route path='/dashboard' Component={Dashboard}></Route>
+                <Route path='/scan' Component={Scanner}></Route>
+            </Routes> 
+          </div>
+      </BrowserRouter>
+  )
+}
+
 export default App;
