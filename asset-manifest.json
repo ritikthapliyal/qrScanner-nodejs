@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ritikthapliyal/qrScanner-nodejs/static/css/main.e6c13ad2.css",
+    "main.js": "/ritikthapliyal/qrScanner-nodejs/static/js/main.046dab07.js",
+    "index.html": "/ritikthapliyal/qrScanner-nodejs/index.html",
+    "main.e6c13ad2.css.map": "/ritikthapliyal/qrScanner-nodejs/static/css/main.e6c13ad2.css.map",
+    "main.046dab07.js.map": "/ritikthapliyal/qrScanner-nodejs/static/js/main.046dab07.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.046dab07.js"
+  ]
+}
