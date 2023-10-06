@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
+import React, { useState } from 'react';
+import Html5QrcodePlugin from './Html5Qr';
+import ResultContainerPlugin from './Resultcontainerplugin';
+const App = (props) => {
+    const [decodedResults, setDecodedResults] = useState([]);
+    const onNewScanResult = (decodedText, decodedResult) => {
+        console.log("App [result]", decodedResult);
+        setDecodedResults(prev => [...prev, decodedResult]);
+    };
+    return (
+        <div className="App">
+            <section className="App-section">
+                <div className="App-section-title"> Html5-qrcode React demo</div>
+                <br />
+                <br />
+                <br />
+                <Html5QrcodePlugin
+                    fps={10}
+                    qrbox={250}
+                    disableFlip={false}
+                    qrCodeSuccessCallback={onNewScanResult}
+                />
+                <ResultContainerPlugin results={decodedResults} />
+            </section>
+        </div>
+    );
+};
 export default App;
