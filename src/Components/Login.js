@@ -13,13 +13,6 @@ export default function Login(){
     
     const [ userLogin, userLoginOptions] = useLoginMutation()
 
-    if(userLoginOptions.isError){
-
-        if(userLoginOptions.error.status){
-            console.log("error",userLoginOptions.error.data.error)
-        }
-    }
-
     const saveUsername = (e)=>{
         userLoginOptions.isError = false
         usernameInputRef.current.style.outlineColor = '#5555ff'
