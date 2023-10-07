@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import ScannerOverlay from './ScannerOverlay'
 import './Css.css'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { useAddBarcodeMutation } from '../../store/apis/dashboardApis' 
+import { useAddBarcodeMutation } from '../../store/apis/dashboardApis'
+import { useDispatch } from 'react-redux'
+import { setAuthState } from '../../store/authSlice'
 
 
 function Scanner() {
 
     const location = useLocation()
     const navigate = useNavigate()
-    console.log(location)
+    const dispatch = useDispatch()
     const [showOverlay,setShowOverlay] = useState(location.state || false)
     const [barcodeData,setBarcodeData] = useState([])
 
@@ -19,6 +21,14 @@ function Scanner() {
         try{
             const response = await addBarcode(location.state)
             console.log(response)
+
+            if (response.error) {
+                dispatch(setAuthState({isLoggedIn : false}))
+                localStorage.removeItem('token')
+            }
+            
+            navigate('/')
+            
         }
         catch(err){
             console.log(err)
@@ -38,7 +48,7 @@ function Scanner() {
                         <button onClick={()=>{setShowOverlay(true)}}>Scan</button>
                     </div>
                 :   <div className='scanned_barcode'>
-                        <p>{barcodeData[0].decodedText}</p>
+                        <p>Barcode : {barcodeData[0].decodedText}</p>
                         <div>
                             <button onClick={()=>{setShowOverlay(true)}}>Scan Again</button>
                             <button onClick={handleAddBarcode}>Add Barcode</button>
