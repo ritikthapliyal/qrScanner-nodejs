@@ -19,7 +19,7 @@ function Scanner() {
 
     const handleAddBarcode = async()=>{
         try{
-            const response = await addBarcode(location.state)
+            const response = await addBarcode(barcodeData)
             console.log(response)
 
             if (response.error) {
