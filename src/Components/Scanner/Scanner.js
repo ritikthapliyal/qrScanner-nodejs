@@ -3,9 +3,12 @@ import Html5QrcodePlugin from './Html5Qr'
 import './Css.css'
 
 function Scanner() {
-    const [decodedResults, setDecodedResults] = useState([]);
+    
+    const [barcodeData, setBarcodeData] = useState({})
+    const [stringData, setStringData] = useState("haha")
     const onNewScanResult = (decodedText, decodedResult) => {
-        setDecodedResults([decodedResult])
+        setBarcodeData(decodedResult)
+        setStringData(JSON.stringify(decodedResult))
     }
     return (
         <div className="Scanner">
@@ -15,9 +18,9 @@ function Scanner() {
                 disableFlip={false}
                 qrCodeSuccessCallback={onNewScanResult}
             />
-            {decodedResults}
+            <div>{stringData}</div>
         </div>
-    );
+    )
 }
 
 export default Scanner
