@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ScannerOverlay from './ScannerOverlay'
 import './Css.css'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { useAddBarcodeMutation } from '../../store/apis/dashboardApis' 
 
 
 function Scanner() {
@@ -11,6 +12,18 @@ function Scanner() {
     console.log(location)
     const [showOverlay,setShowOverlay] = useState(location.state || false)
     const [barcodeData,setBarcodeData] = useState([])
+
+    const [ addBarcode, addBarcodeOptions] = useAddBarcodeMutation()
+
+    const handleAddBarcode = async()=>{
+        try{
+            const response = await addBarcode(location.state)
+            console.log(response)
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
 
     return (
         <div className="Scanner">
@@ -26,7 +39,11 @@ function Scanner() {
                     </div>
                 :   <div className='scanned_barcode'>
                         <p>{barcodeData[0].decodedText}</p>
-                        <button>Add Barcode</button>
+                        <div>
+                            <button onClick={()=>{setShowOverlay(true)}}>Scan Again</button>
+                            <button onClick={handleAddBarcode}>Add Barcode</button>
+                        </div>
+                        
                     </div>
             }
         </div>

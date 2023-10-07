@@ -12,7 +12,6 @@ function ScannerOverlay({setShowOverlay,setBarcodeData,showOverlay}) {
         setShowOverlay(false)
     }
 
-
     useEffect(() => {
         portal.style.zIndex = showOverlay ? '10' : '-10'
     }, [showOverlay])
