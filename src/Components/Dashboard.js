@@ -27,7 +27,7 @@ function Dashboard() {
 
     return (
         <div className='dashboard'>
-            <button onClick={()=>{navigate('/scan')}}>Scan</button>
+            <button onClick={()=>{navigate('/scan',{ state : {openScanner:true}})}}>Scan</button>
             <button onClick={handleAddBarcode}>Add Barcode</button>
             <ShowBarcodes/>
         </div>

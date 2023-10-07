@@ -1,8 +1,8 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Html5QrcodePlugin from './Html5Qr'
 import reactDom from 'react-dom'
 
-function ScannerOverlay({setShowOverlay,setBarcodeData}) {
+function ScannerOverlay({setShowOverlay,setBarcodeData,showOverlay}) {
 
     const onNewScanResult = (decodedText, decodedResult) => {
         setBarcodeData([decodedResult])
@@ -10,16 +10,18 @@ function ScannerOverlay({setShowOverlay,setBarcodeData}) {
     }
 
     const portal = document.getElementById('portal')
+
+    useEffect(() => {
+        portal.style.zIndex = showOverlay ? '10' : '-10'
+    }, [showOverlay])
     
     return reactDom.createPortal(
-        <div id='portal'>
-            <Html5QrcodePlugin
+                <Html5QrcodePlugin
                         fps={10}
                         qrbox={250}
                         disableFlip={false}
                         qrCodeSuccessCallback={onNewScanResult}
                     />
-        </div>
         ,portal)
 }
 

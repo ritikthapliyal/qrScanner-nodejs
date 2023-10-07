@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import ScannerOverlay from './ScannerOverlay'
 import './Css.css'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+
 
 function Scanner() {
 
+    const location = useLocation()
     const navigate = useNavigate()
-    const [showOverlay,setShowOverlay] = useState(true)
+    console.log(location)
+    const [showOverlay,setShowOverlay] = useState(location.state || false)
     const [barcodeData,setBarcodeData] = useState([])
 
     return (
         <div className="Scanner">
             {
-                showOverlay && 
-                <ScannerOverlay setBarcodeData={setBarcodeData} setShowOverlay={setShowOverlay}/>
+                showOverlay && <ScannerOverlay setBarcodeData={setBarcodeData} setShowOverlay={setShowOverlay} showOverlay={showOverlay}/>
+               
             }
             {
                 barcodeData.length === 0 
@@ -26,7 +29,6 @@ function Scanner() {
                         <button>Add Barcode</button>
                     </div>
             }
-            <></>
         </div>
     )
 }
