@@ -9,8 +9,8 @@ export default function Login(){
     const[username,setUsername]=useState("tanya")
     const[password,setPassword]=useState("bisht")
 
-    const handleLogin = async()=>{
-
+    const handleLogin = async(e)=>{
+        e.preventDefault()
         try{
             const response=await axios.post("https://efce1xom36.execute-api.ap-south-1.amazonaws.com/dev/login",{username,password}, {withCredentials:true})
             console.log(response.data.token)
@@ -22,21 +22,24 @@ export default function Login(){
     }
 
     return(
-        <div className="barcode-scanner-login">
-       <form  className="loginform" onSubmit={(e)=>{
-        console.log(username,password)
-        e.preventDefault()
-       }}>
-        <div className="login-page-header">Login Page</div>
-        <input onChange={(e)=>{
-            setUsername(e.target.value)
-        }} placeholder="username" value={username}  ></input>
-        <input onChange={(e)=>{
-            setPassword(e.target.value)
-        }} placeholder="password" value={password}></input>
-        <button onClick={handleLogin}>Login</button>
-       </form>
-       </div>
+        <div className="loginform-container">
+            <form className="loginform" onSubmit={handleLogin}>
+                <label>Login</label>
+                <input
+                    type="text"
+                    value={username} 
+                    placeholder="Enter Username" 
+                    onChange={(e)=>{setUsername(e.target.value)}}>
+                </input>
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e)=>{setPassword(e.target.value)}} 
+                    placeholder="Enter Password">
+                </input>
+                <button onClick={handleLogin}>Login</button>
+            </form>
+        </div>
     )
 }
 
