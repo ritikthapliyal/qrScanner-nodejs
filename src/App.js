@@ -1,21 +1,27 @@
-import {BrowserRouter,Route, Routes} from 'react-router-dom'
 import Login from './Components/Login'
+import { useSelector } from 'react-redux'
+import Scanner from './Components/Scanner/Scanner'
 import Dashboard from './Components/Dashboard'
-import Scanner from './Components/Scanner'
+import {BrowserRouter,Route, Routes} from 'react-router-dom'
+import useAuthVerification from './Utilities/AuthVerification'
 
 function App() {
 
-  return (
-      <BrowserRouter>
-          <div className="App">
-            <Routes>
-                <Route path='/' Component={Login}></Route>
-                <Route path='/dashboard' Component={Dashboard}></Route>
-                <Route path='/scan' Component={Scanner}></Route>
-            </Routes> 
-          </div>
-      </BrowserRouter>
-  )
+    const {isLoading} = useAuthVerification()
+    const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn)
+
+    return (
+        <BrowserRouter>
+            <div className="App">
+                <Routes>
+                    <Route path='/' 
+                    element={ isLoading ? <>Loading....</> 
+                                        : isLoggedIn ? <Dashboard/> : <Login/> }/>
+                    <Route path='/scan' element={<Scanner/>} />
+                </Routes> 
+            </div>
+        </BrowserRouter>
+    )
 }
 
 export default App;

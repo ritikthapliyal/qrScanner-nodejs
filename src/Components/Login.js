@@ -1,10 +1,13 @@
 import { useState,useRef } from "react"
 import { useNavigate } from "react-router-dom"
-import "./Login.css"
 import { useLoginMutation } from "../store/apis/authApis"
+import { useDispatch } from "react-redux"
+import { setAuthState } from "../store/authSlice"
+
 
 export default function Login(){
 
+    const dispatch = useDispatch()
     const navigate=useNavigate()
     const[username,setUsername]=useState("tanya")
     const[password,setPassword]=useState("bishtt")
@@ -54,8 +57,9 @@ export default function Login(){
                 const response = await userLogin({username,password})
                 if(response.data && response.data.status === 200){
                     console.log("response",userLoginOptions.data)
-                    const {token} = response.data
-                    navigate("/dashboard")
+                    localStorage.setItem('token', response.data.token)
+                    dispatch(setAuthState({isLoggedIn : true}))
+                    navigate("/")
                 }
             }
             catch(error){

@@ -4,16 +4,26 @@ export const authApi = createApi({
     reducerPath:"auth",
     baseQuery: fetchBaseQuery({
         baseUrl : 'https://efce1xom36.execute-api.ap-south-1.amazonaws.com/dev',
-        credentials: 'include',
     }),
     endpoints(builder){
         return {
             login : builder.mutation({ 
                 query: (data) => { 
                   return {
-                    url: '/login',
+                    url: '/user',
                     method: 'POST',
                     body: data,     
+                  };
+                },
+            }),
+            verifyAuth : builder.mutation({ 
+                query: (token) => { 
+                  return {
+                    url: '/user/auth',
+                    method: 'POST',
+                    headers: {
+                        Authorization: token,
+                      },   
                   };
                 },
             }),
@@ -21,5 +31,4 @@ export const authApi = createApi({
     }
 })
 
-
-export const {useLoginMutation} = authApi
+export const {useLoginMutation, useVerifyAuthMutation} = authApi
