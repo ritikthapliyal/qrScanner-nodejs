@@ -19,13 +19,14 @@ export const dashboardApi = createApi({
                 },
             }),
             addBarcode : builder.mutation({ 
-                query: () => { 
+                query: (data) => { 
                   return {
                     url: '/dashboard',
                     method: 'POST',
                     headers: {
-                        Authorization: localStorage.getItem('token') || "token",
-                      },   
+                        Authorization: localStorage.getItem('token') || "token"
+                    },
+                    body: { data }   
                   }
                 },
             }),
