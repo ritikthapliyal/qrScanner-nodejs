@@ -17,6 +17,7 @@ function Dashboard() {
     const handleAddBarcode = async()=>{
         try{
             const response = await addBarcode(location.state)
+            console.log(response)
         }
         catch(err){
             console.log(err)
