@@ -3,13 +3,15 @@ import Html5QrcodePlugin from './Html5Qr'
 import reactDom from 'react-dom'
 
 function ScannerOverlay({setShowOverlay,setBarcodeData,showOverlay}) {
+    
+    const portal = document.getElementById('portal')
 
     const onNewScanResult = (decodedText, decodedResult) => {
         setBarcodeData([decodedResult])
+        portal.style.zIndex = '-10'
         setShowOverlay(false)
     }
 
-    const portal = document.getElementById('portal')
 
     useEffect(() => {
         portal.style.zIndex = showOverlay ? '10' : '-10'
