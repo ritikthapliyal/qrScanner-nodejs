@@ -13,6 +13,13 @@ export default function Login(){
     
     const [ userLogin, userLoginOptions] = useLoginMutation()
 
+    if(userLoginOptions.isError){
+
+        if(userLoginOptions.error){
+            console.log("error",userLoginOptions.error)
+        }
+    }
+
     const saveUsername = (e)=>{
         userLoginOptions.isError = false
         usernameInputRef.current.style.outlineColor = '#5555ff'
@@ -70,7 +77,7 @@ export default function Login(){
                 <label>Login</label>
                 {
                     userLoginOptions.isError && <pre className="error-pre">
-                        {userLoginOptions.error.status ? userLoginOptions.error.data.error : "Something Went Wrong"}
+                        {userLoginOptions.error.error ? "Something Went Wrong" : userLoginOptions.error.data.error }
                     </pre>
                 }
                 {
