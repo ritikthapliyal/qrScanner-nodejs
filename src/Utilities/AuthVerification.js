@@ -10,11 +10,13 @@ const useAuthVerification = () => {
 
   const callVerifyAuth = async(token)=>{
     try {
+        
         const response = await verifyAuth(token)
         
         if (response.error) {
+            console.log(response)
             dispatch(setAuthState({isLoggedIn : false}))
-            throw new Error(response.error.data.error)
+            throw new Error(response.error.error)
         }
         else{
             console.log(response)
@@ -31,7 +33,7 @@ const useAuthVerification = () => {
     
     const token = localStorage.getItem('token')
     
-    if (!token) { dispatch(setAuthState({isLoggedIn : true})) }
+    if (!token) { dispatch(setAuthState({isLoggedIn : false})) }
     else{ callVerifyAuth(token) }
 
     }, [])
