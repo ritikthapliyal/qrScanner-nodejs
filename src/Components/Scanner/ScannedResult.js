@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAddBarcodeMutation } from '../../store/apis/dashboardApis'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation, json } from 'react-router-dom'
 import SessionExpiredOverlay from '../SessionExpiredOverlay'
 
 function ScannedResult() {
@@ -37,7 +37,7 @@ function ScannedResult() {
                         <button onClick={()=>{navigate('/scan')}}>Scan</button>
                     </div>
                 :   <div className='scanned_barcode'>
-                        <p>Barcode : {barcodeData[0].decodedText}</p>
+                        <p>Barcode : {JSON.stringify(location.state)}</p>
                         <div>
                             <button onClick={()=>{navigate('/scan')}}>Scan Again</button>
                             <button onClick={handleAddBarcode}>Add Barcode</button>
