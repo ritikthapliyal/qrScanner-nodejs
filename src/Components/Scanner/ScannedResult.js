@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useAddBarcodeMutation } from '../../store/apis/dashboardApis'
 import { useNavigate, useLocation, json } from 'react-router-dom'
 import SessionExpiredOverlay from '../SessionExpiredOverlay'
+import Loading from '../Loading'
 
 function ScannedResult() {
 
@@ -22,6 +23,10 @@ function ScannedResult() {
             if(response.error && response.error.status && response.error.status === 401) {
                 setShowSessionExpired(true)
             }
+
+            if(response.data && response.data.status && response.data.status === 201){
+                navigate('/')
+            }
             
         }
         catch(err){
@@ -38,13 +43,13 @@ function ScannedResult() {
                         <p>No Barcode Scanned.</p>
                         <button onClick={()=>{navigate('/scan')}}>Scan</button>
                     </div>
-                :   <div className='scanned_barcode'>
+                :  addBarcodeOptions.isLoading ? <Loading/> :
+                    <div className='scanned_barcode'>
                         <p>Barcode : {barcodeData.decodedText}</p>
                         <div>
                             <button onClick={()=>{navigate('/scan')}}>Scan Again</button>
                             <button onClick={handleAddBarcode}>Add Barcode</button>
                         </div>
-                        
                     </div>
             }
             <div id='portal' style={{display : showSessionExpired ? "flex" : "none",zIndex : showSessionExpired ? "10" : "-10"}}></div>

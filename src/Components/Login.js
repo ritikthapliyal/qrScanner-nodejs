@@ -57,7 +57,6 @@ export default function Login(){
             try{
                 const response = await userLogin({username,password})
                 if(response.data && response.data.status === 200){
-                    console.log("response",userLoginOptions.data)
                     localStorage.setItem('token', response.data.token)
                     dispatch(setAuthState({isLoggedIn : true}))
                     navigate("/")
