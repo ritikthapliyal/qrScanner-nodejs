@@ -207,9 +207,21 @@ html,body,#root,.App{
     }
     .show-barcodes div p{
         padding: .3rem;
-        background-color: white;
         font-size: 0.8rem;
     }
+
+
+
+    .session-expired{
+        border-radius: 1rem;
+        padding: 1rem;
+        gap: 1.2rem;
+        height: 16rem;
+        width: 12rem;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
 
 
 

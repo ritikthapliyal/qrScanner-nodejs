@@ -1,23 +1,31 @@
-import React from 'react'
-import { useGetBarcodeQuery } from '../store/apis/dashboardApis'
-import Loading from './Loading'
+import React, { useEffect, useState } from 'react';
+import { useGetBarcodeQuery } from '../store/apis/dashboardApis';
+import Loading from './Loading';
 
 function ShowBarcodes() {
-    
-    const { data, isLoading, isError, error } = useGetBarcodeQuery()
+  const [latestData, setLatestData] = useState(null);
 
-    return (
-        <div className='show-barcodes'>
-            {
-                isLoading && <Loading style={{fontSize : "18px"}}/>
-            }
-            {
-                data && data.message && <div><h3>History :</h3>{data.message.map((obj)=>{
-                    return <p>{obj.barcode}</p>
-                })}</div>
-            }
+  const { data, isLoading, isError, error } = useGetBarcodeQuery();
+
+  useEffect(() => {
+    if (data && data.message) {
+      setLatestData(data.message);
+    }
+  }, [data]);
+
+  return (
+    <div className="show-barcodes">
+      {isLoading && <Loading style={{ fontSize: '18px' }} />}
+      {latestData && (
+        <div>
+          <h3>History:</h3>
+          {latestData.map((obj,index) => {
+            return <p key={index}>{obj.barcode}</p>
+          })}
         </div>
-    )
+      )}
+    </div>
+  )
 }
 
-export default ShowBarcodes
+export default ShowBarcodes;

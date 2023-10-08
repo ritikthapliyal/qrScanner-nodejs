@@ -78,7 +78,7 @@ export default function Login(){
                     </pre>
                 }
                 {
-                    userLoginOptions.isLoading && <Loading style={{fontSize : "20px"}}/>
+                    userLoginOptions.isLoading && <pre>Loading...</pre>
                 }
                 <div className="login-input-div">
                     <label>Username :</label>
