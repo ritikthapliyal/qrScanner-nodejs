@@ -19,14 +19,14 @@ function ScannedResult() {
         try{
             const response = await addBarcode(location.state)
             console.log(response)
-            
+
             if(response.error && response.error.status && response.error.status === 401) {
                 setShowSessionExpired(true)
             }
 
            
             if(response.data && response.data.status && response.data.status === 201){
-                navigate('/')
+                navigate('/',{state:Math.random()})
             }
             
         }
