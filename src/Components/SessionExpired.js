@@ -15,6 +15,8 @@ function SessionExpired({setShowSessionExpired}) {
         navigate('/')
     }
 
+    
+
     return (
         <div className='session-expired'>
             <p>Session Expired. Please Login Again</p>

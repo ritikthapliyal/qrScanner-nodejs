@@ -3,11 +3,14 @@ import { useAddBarcodeMutation } from '../../store/apis/dashboardApis'
 import { useNavigate, useLocation, json } from 'react-router-dom'
 import SessionExpiredOverlay from '../SessionExpiredOverlay'
 import Loading from '../Loading'
+import { useDispatch } from 'react-redux'
+import { refresh } from '../../store/authSlice'
 
 function ScannedResult() {
 
     const navigate = useNavigate()
     const location = useLocation()
+    const dispatch = useDispatch()
     const barcodeData = location.state || {decodedText:""}
 
     const [showSessionExpired,setShowSessionExpired] = useState(false) 
@@ -26,7 +29,8 @@ function ScannedResult() {
 
            
             if(response.data && response.data.status && response.data.status === 201){
-                navigate('/',{state:Math.random()})
+                dispatch(refresh())
+                navigate('/')
             }
             
         }

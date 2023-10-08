@@ -1,17 +1,14 @@
-import React,{useEffect,useState} from 'react'
+import React, { useEffect } from 'react'
 import { useGetBarcodeQuery } from '../store/apis/dashboardApis'
 import Loading from './Loading'
-import { useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function ShowBarcodes() {
     
-    const location = useLocation()
-    const [random,setRandom] = useState(0)
-    const { data, isLoading, isError, error } = useGetBarcodeQuery()
+    const { data, isLoading } = useGetBarcodeQuery()
+    const {shouldRefresh} = useSelector((state) => state.authSlice)
 
-    useEffect(()=>{
-        setRandom(location.state)
-    },[random])
+    useEffect(()=>{},[shouldRefresh])
 
     return (
         <div className='show-barcodes'>
