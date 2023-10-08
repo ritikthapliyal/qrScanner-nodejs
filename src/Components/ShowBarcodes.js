@@ -7,8 +7,12 @@ function ShowBarcodes() {
     
     const { data, isLoading } = useGetBarcodeQuery()
     const {shouldRefresh} = useSelector((state) => state.authSlice)
-
-    useEffect(() => {}, [shouldRefresh])
+    const [refreshKey, setRefreshKey] = useState(0)
+    
+    useEffect(() => {
+      
+      setRefreshKey((prevKey) => prevKey + 1);
+    }, [shouldRefresh]);
 
     return (
         <div className='show-barcodes'>
