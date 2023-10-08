@@ -59,7 +59,10 @@ html,body,#root,.App{
     outline: 2px solid #5555ff;
 }
 
-.loginform button, .Scanner button, .dashboard button{
+.loginform button, 
+.Scanner button,
+.session-expired button,
+.dashboard button{
     width: fit-content;
     padding: .5rem 1rem;
     border: 2px solid black;
@@ -70,7 +73,10 @@ html,body,#root,.App{
     border-radius: 4px;
     transition: all 0.3s;
 }
-.loginform button:hover,.Scanner button:hover, .dashboard button:hover{
+.loginform button:hover,
+.Scanner button:hover, 
+.dashboard button:hover,
+.session-expired button:hover{
     background-color: white;
     color: black;
 }
