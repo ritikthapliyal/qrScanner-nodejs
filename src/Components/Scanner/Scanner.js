@@ -8,15 +8,15 @@ function Scanner() {
 
     const navigate = useNavigate()
     const onNewScanResult = (decodedText, decodedResult) => {
-        navigate('/scanned-result',{ state : {result : [decodedResult]}})
+        navigate('/scanned-result')
     }
 
     return (
             <Html5QrcodePlugin
-                        fps={10}
-                        qrbox={250}
-                        disableFlip={false}
-                        qrCodeSuccessCallback={onNewScanResult}>
+                fps={10}
+                qrbox={250}
+                disableFlip={false}
+                qrCodeSuccessCallback={onNewScanResult}>
             </Html5QrcodePlugin>
             
     )
