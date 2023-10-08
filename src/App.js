@@ -16,7 +16,7 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 {
-                    !isLoggedIn &&  !isLoading && <Login/>
+                    !isLoggedIn && !isLoading && <Login/>
                 }
                 {
                     isLoading && <Loading/> 

@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { useGetBarcodeQuery } from '../store/apis/dashboardApis'
 import Loading from './Loading'
 import { useLocation } from 'react-router-dom'
@@ -6,11 +6,12 @@ import { useLocation } from 'react-router-dom'
 function ShowBarcodes() {
     
     const location = useLocation()
-    const random = location.state || 0
+    const [random,setRandom] = useState(0)
     const { data, isLoading, isError, error } = useGetBarcodeQuery()
 
-    useEffect(() => {
-    }, [random])
+    useEffect(()=>{
+        setRandom(location.state)
+    },[random])
 
     return (
         <div className='show-barcodes'>
