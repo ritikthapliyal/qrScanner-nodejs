@@ -15,7 +15,7 @@ html,body,#root,.App{
     display: flex;
 }
 
-/*------------------ LOGIN --------------- */
+/*------------------ Login --------------- */
 .loginform-container{
     width: 100%;
     height: 100%;
@@ -26,18 +26,18 @@ html,body,#root,.App{
     background-color: #f0f0f0;
 }
 
-.loginform{
+.loginform, .dashboard{
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 20rem;
     height: 22rem;
+    background-color: #eae3e3;
+    margin: auto;
     border-radius: 1rem;
     gap: 1.2rem;
     padding: 1rem;
-    background-color: #eae3e3;
-    margin: auto;
 }
 
 .loginform label{
@@ -57,7 +57,7 @@ html,body,#root,.App{
     outline: 2px solid #5555ff;
 }
 
-.loginform button, .Scanner button{
+.loginform button, .Scanner button, .dashboard button{
     width: fit-content;
     padding: .5rem 1rem;
     border: 2px solid black;
@@ -81,7 +81,43 @@ html,body,#root,.App{
     color: #ff1010;
 }
 
-@media screen and (max-width: 450px) {
+
+
+/*------------------ Dashboard --------------- */
+
+.dashboard{
+    width: 24rem;
+    height: 34rem;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.show-barcodes{
+    display: flex;
+    height: 80%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+.show-barcodes div{
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+    height: 100%;
+    width: 100%;
+}
+.show-barcodes div p{
+    padding: .4rem;
+    background-color: white;
+    border-radius: 4px;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 460px) {
     
     .loginform{
         width: 14rem;
@@ -112,10 +148,38 @@ html,body,#root,.App{
         font-size: 0.7rem;
         text-align: center;
     }
-    .loginform button{
+    .loginform button, .dashboard button{
         padding: .5rem 1rem;
         border: 1px solid black;
         font-size: .8rem;
     }
 
+
+
+
+
+    .dashboard{
+        width: 16rem;
+        height: 26rem;
+    }
+    .show-barcodes{
+        height: 80%;
+        width: 90%;
+    }
+    .dashboard h3{
+        font-size: 1rem;
+    }
+    .show-barcodes div{
+        gap: .4rem;
+    }
+    .show-barcodes div p{
+        padding: .3rem;
+        background-color: white;
+        font-size: 0.8rem;
+    }
+
 }
+
+
+
+

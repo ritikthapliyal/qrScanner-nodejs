@@ -9,7 +9,7 @@ function Dashboard() {
 
     return (
         <div className='dashboard'>
-            <button onClick={()=>{navigate('/scan',{ state : {openScanner:true}})}}>Scan</button>
+            <button onClick={()=>{navigate('/scan',{ state : {openScanner:true}})}}>Scan Barcode</button>
             <ShowBarcodes/>
         </div>
     )
