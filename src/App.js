@@ -14,16 +14,17 @@ function App() {
 
     return (
         <BrowserRouter>
-            {
-                !isLoggedIn &&  !isLoading && <Login/>
-            }
             <div className="App">
+                {
+                    !isLoggedIn &&  !isLoading && <Login/>
+                }
+                {
+                    isLoading && <Loading/> 
+                }
                 <Routes>
-                    <Route path='/' 
-                           element={ isLoading ? <Loading/> 
-                                               : isLoggedIn ? <Dashboard/> : <Loading/> }/>
-                    <Route path='/scan' element={<Scanner/>} />
-                    <Route path='/scanned-result' element={<ScannedResult/>} />
+                    <Route path='/' element={ isLoggedIn && <Dashboard/>}/>
+                    <Route path='/scan' element={isLoggedIn && <Scanner/>} />
+                    <Route path='/scanned-result' element={isLoggedIn && <ScannedResult/>} />
                 </Routes> 
             </div>
         </BrowserRouter>
