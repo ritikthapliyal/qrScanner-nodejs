@@ -8,10 +8,6 @@ function Dashboard() {
     
     const navigate=useNavigate()
 
-    const {shouldRefresh} = useSelector((state) => state.authSlice)
-
-    useEffect(()=>{},[shouldRefresh])
-
     return (
         <div className='dashboard'>
             <button onClick={()=>{navigate('/scan')}}>Scan Barcode</button>
