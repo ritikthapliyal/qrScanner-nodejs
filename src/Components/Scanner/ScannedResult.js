@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAddBarcodeMutation } from '../../store/apis/dashboardApis'
 import { useNavigate, useLocation, json } from 'react-router-dom'
 import SessionExpiredOverlay from '../SessionExpiredOverlay'
@@ -7,7 +7,7 @@ function ScannedResult() {
 
     const navigate = useNavigate()
     const location = useLocation()
-    const barcodeData = location.state || [{nae:"ritik"}]
+    const barcodeData = location.state || {decodedText:""}
 
     const [showSessionExpired,setShowSessionExpired] = useState(false) 
 
@@ -16,7 +16,7 @@ function ScannedResult() {
     const handleAddBarcode = async()=>{
 
         try{
-            const response = await addBarcode()
+            const response = await addBarcode(location.state)
             console.log( response.error.status)
 
             if(response.error && response.error.status && response.error.status === 401) {
@@ -29,15 +29,17 @@ function ScannedResult() {
         }
     }
 
+    useEffect(()=>{},[barcodeData])
+
     return (
         <div className='Scanner'>{
-                barcodeData.length === 0 
+                barcodeData.decodedText.lenght === 0
                 ?   <div className='no_barcode'>
                         <p>No Barcode Scanned.</p>
                         <button onClick={()=>{navigate('/scan')}}>Scan</button>
                     </div>
                 :   <div className='scanned_barcode'>
-                        <p>Barcode : {JSON.stringify(location)}</p>
+                        <p>Barcode : {barcodeData.decodedText}</p>
                         <div>
                             <button onClick={()=>{navigate('/scan')}}>Scan Again</button>
                             <button onClick={handleAddBarcode}>Add Barcode</button>
