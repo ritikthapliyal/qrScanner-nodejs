@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react'
 import { useGetBarcodeQuery } from '../store/apis/dashboardApis'
 import Loading from './Loading'
-import { useSelector } from 'react-redux'
 
 function ShowBarcodes() {
     
     const { data, isLoading } = useGetBarcodeQuery()
-    const {shouldRefresh} = useSelector((state) => state.authSlice)
-
-    useEffect(()=>{},[shouldRefresh])
 
     return (
         <div className='show-barcodes'>
