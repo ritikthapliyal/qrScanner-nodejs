@@ -29,8 +29,8 @@ function ScannedResult() {
 
            
             if(response.data && response.data.status && response.data.status === 201){
-                dispatch(refresh())
                 navigate('/')
+                navigate(0)
             }
             
         }
