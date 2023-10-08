@@ -8,7 +8,7 @@ function Scanner() {
 
     const navigate = useNavigate()
     const onNewScanResult = (decodedText, decodedResult) => {
-        navigate('/scanned-result')
+        navigate('/scanned-result',{ state : [decodedResult]})
     }
 
     return (
