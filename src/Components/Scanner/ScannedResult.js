@@ -37,7 +37,7 @@ function ScannedResult() {
                         <button onClick={()=>{navigate('/scan')}}>Scan</button>
                     </div>
                 :   <div className='scanned_barcode'>
-                        <p>Barcode : {JSON.stringify(location.state)}</p>
+                        <p>Barcode : {JSON.stringify(location)}</p>
                         <div>
                             <button onClick={()=>{navigate('/scan')}}>Scan Again</button>
                             <button onClick={handleAddBarcode}>Add Barcode</button>
