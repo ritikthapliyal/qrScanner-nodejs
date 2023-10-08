@@ -1,5 +1,6 @@
 import React from 'react'
 import { useGetBarcodeQuery } from '../store/apis/dashboardApis'
+import Loading from './Loading'
 
 function ShowBarcodes() {
     
@@ -8,7 +9,7 @@ function ShowBarcodes() {
     return (
         <div className='show-barcodes'>
             {
-                isLoading && <>Getting Data...</>
+                isLoading && <Loading style={{fontSize : "18px"}}/>
             }
             {
                 data && data.message && <div><h3>History :</h3>{data.message.map((obj)=>{

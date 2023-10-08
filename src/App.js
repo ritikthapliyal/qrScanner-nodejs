@@ -4,6 +4,7 @@ import Scanner from './Components/Scanner/Scanner'
 import Dashboard from './Components/Dashboard'
 import {BrowserRouter,Route, Routes} from 'react-router-dom'
 import useAuthVerification from './Utilities/AuthVerification'
+import Loading from './Components/Loading'
 
 function App() {
 
@@ -15,8 +16,8 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path='/' 
-                    element={ isLoading ? <>Loading....</> 
-                                        : isLoggedIn ? <Dashboard/> : <Login/> }/>
+                           element={ isLoading ? <Loading/> 
+                                               : isLoggedIn ? <Dashboard/> : <Login/> }/>
                     <Route path='/scan' element={<Scanner/>} />
                 </Routes> 
             </div>

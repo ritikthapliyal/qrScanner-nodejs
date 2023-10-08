@@ -30,9 +30,9 @@ html,body,#root,.App{
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 20rem;
-    height: 22rem;
+    height: 24rem;
     background-color: #eae3e3;
     margin: auto;
     border-radius: 1rem;
@@ -40,18 +40,20 @@ html,body,#root,.App{
     padding: 1rem;
 }
 
-.loginform label{
-    font-size: 2rem;
-    font-weight:bolder;
-    margin-bottom: 1.4rem;
+.login-input-div{
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+    width: 90%;
 }
 .loginform input{
-    width: 90%;
+    width: 98%;
     height: 3rem;
     border-radius: 4px;
     border:none;
     padding: 10px;
     font-size: 1rem;
+    align-self: flex-end;
 }
 .loginform input:focus {
     outline: 2px solid #5555ff;
@@ -68,7 +70,7 @@ html,body,#root,.App{
     border-radius: 4px;
     transition: all 0.3s;
 }
-.loginform button:hover{
+.loginform button:hover,.Scanner button:hover, .dashboard button:hover{
     background-color: white;
     color: black;
 }
@@ -97,6 +99,8 @@ html,body,#root,.App{
     width: 90%;
     justify-content: center;
     align-items: center;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 .show-barcodes div{
     display: flex;
@@ -110,8 +114,26 @@ html,body,#root,.App{
     background-color: white;
     border-radius: 4px;
 }
+::-webkit-scrollbar{
+    width: 0rem;
+}
 
 
+
+.loader {
+    align-self: center;
+    margin: auto;
+    color: #000000;
+    font-size: 36px;
+    text-indent: -9999em;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: relative;
+    transform: translateZ(0);
+    animation: mltShdSpin 1.7s infinite ease, round 1.7s infinite ease;
+}
 
 
 
@@ -120,25 +142,30 @@ html,body,#root,.App{
 @media screen and (max-width: 460px) {
     
     .loginform{
-        width: 14rem;
-        height: 18rem;
+        width: 15rem;
+        height: 19rem;
         border-radius: 1rem;
         gap: 1.2rem;
         padding: .6rem;
     }
     
-    .loginform label{
-        font-size: 1.4rem;
-        font-weight:bolder;
-        margin-bottom: 1rem;
+    .login-input-div{
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+        width: 90%;
+    }
+    .login-input-div label{
+        font-size: .9rem;
     }
     .loginform input{
-        width: 90%;
+        width: 98%;
         height: 2.2rem;
         border-radius: 4px;
         border:none;
         padding: 8px;
-        font-size: .8rem;
+        font-size: 1rem;
+        align-self: flex-end;
     }
     .loginform input:focus {
         outline: 1px solid #5555ff;
@@ -178,8 +205,62 @@ html,body,#root,.App{
         font-size: 0.8rem;
     }
 
+
+
+    .loader {
+        font-size: 28px;
+    }
+
 }
 
 
 
 
+
+
+
+
+
+
+
+
+  
+  @keyframes mltShdSpin {
+    0% {
+      box-shadow: 0 -0.83em 0 -0.4em,
+      0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em,
+      0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    5%,
+    95% {
+      box-shadow: 0 -0.83em 0 -0.4em, 
+      0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 
+      0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+    10%,
+    59% {
+      box-shadow: 0 -0.83em 0 -0.4em, 
+      -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em, 
+      -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+    }
+    20% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em,
+       -0.555em -0.617em 0 -0.44em, -0.671em -0.488em 0 -0.46em, 
+       -0.749em -0.34em 0 -0.477em;
+    }
+    38% {
+      box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em,
+       -0.645em -0.522em 0 -0.44em, -0.775em -0.297em 0 -0.46em, 
+       -0.82em -0.09em 0 -0.477em;
+    }
+    100% {
+      box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 
+      0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em, 0 -0.83em 0 -0.477em;
+    }
+  }
+  
+  @keyframes round {
+    0% { transform: rotate(0deg) }
+    100% { transform: rotate(360deg) }
+  }
+   

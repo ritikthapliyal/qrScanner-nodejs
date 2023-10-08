@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { useLoginMutation } from "../store/apis/authApis"
 import { useDispatch } from "react-redux"
 import { setAuthState } from "../store/authSlice"
+import Loading from "./Loading"
 
 
 export default function Login(){
@@ -71,29 +72,35 @@ export default function Login(){
     return(
         <div className="loginform-container">
             <form className="loginform" onSubmit={handleLogin}>
-                <label>Login</label>
+                <h2>Login</h2>
                 {
                     userLoginOptions.isError && <pre className="error-pre">
                         {userLoginOptions.error.error ? "Something Went Wrong" : userLoginOptions.error.data.error }
                     </pre>
                 }
                 {
-                    userLoginOptions.isLoading && <pre>Loading...</pre>
+                    userLoginOptions.isLoading && <Loading style={{fontSize : "20px"}}/>
                 }
-                <input
-                    type="text"
-                    ref={usernameInputRef}
-                    value={username} 
-                    placeholder="Enter Username" 
-                    onChange={saveUsername}>
-                </input>
-                <input
-                    type="password"
-                    ref={passwordInputRef}
-                    value={password}
-                    onChange={savePassword} 
-                    placeholder="Enter Password">
-                </input>
+                <div className="login-input-div">
+                    <label>Username :</label>
+                    <input
+                        type="text"
+                        ref={usernameInputRef}
+                        value={username} 
+                        placeholder="Enter Username" 
+                        onChange={saveUsername}>
+                    </input>
+                </div>
+                <div className="login-input-div">
+                    <label>Password :</label>
+                    <input
+                        type="password"
+                        ref={passwordInputRef}
+                        value={password}
+                        onChange={savePassword} 
+                        placeholder="Enter Password">
+                    </input>
+                </div>
                 <button onClick={handleLogin}>Login</button>
             </form>
         </div>
