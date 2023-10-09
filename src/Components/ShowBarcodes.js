@@ -16,15 +16,18 @@ function ShowBarcodes() {
 
 
                     //date time calculate
-                    const dateObject = new Date(date)
+                    const dateObject = new Date(obj.timeStamp)
 
                     const formattedTime = dateObject.toLocaleTimeString()
                     const formattedDate = dateObject.toLocaleDateString('en-GB')
                     const weekDay = dateObject.toLocaleDateString('en-US', { weekday: 'long' })
 
                     return <div key={index}>
-                        <p>Barcode : {obj.barcode}</p>
-                        <p>Scanned On : {formattedDate},{formattedTime},{weekDay}</p>
+                        <p>
+                            Barcode : {obj.barcode}
+                        <br/>
+                            <span>Scanned On : {formattedDate},{formattedTime},{weekDay}</span>
+                        </p>
                     </div>
                 })}</div>
             }

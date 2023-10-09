@@ -145,6 +145,12 @@ html,body,#root,.App{
 
 
 
+.show-barcodes span{
+    font-size: 12px;
+}
+
+
+
 @media screen and (max-width: 460px) {
     
     .loginform{
@@ -228,6 +234,9 @@ html,body,#root,.App{
     }
 
 
+    .show-barcodes span{
+        font-size: 10px;
+    }
 
 
     .loader {
