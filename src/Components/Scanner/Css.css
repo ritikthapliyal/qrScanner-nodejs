@@ -16,9 +16,6 @@
     display: flex;
     flex-direction: column;
 }
-#html5qr-code-full-region__dashboard_section span{
-    display: none;
-}
 
 #portal{
     position: fixed;
