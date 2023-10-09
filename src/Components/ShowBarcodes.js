@@ -45,7 +45,7 @@ function ShowBarcodes() {
     
         {isLoading && <Loading style={{ fontSize: '18px' }} />}
 
-        {sortedData.length === 0 && <span>No Barcodes Found</span>}
+        {!isLoading && sortedData.length === 0 && <h3>No Barcodes Found</h3>}
     
         {sortedData.length > 0 && (
             
