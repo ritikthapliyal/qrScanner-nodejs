@@ -34,15 +34,8 @@ function ShowBarcodes() {
         <div>
         <div style={divCss}>
             <h3>Barcode History : </h3>
-            <span style={{fontSize:"12px"}}>Total : {4}</span>
+            <span style={{fontSize:"12px"}}>Total : {data && data.message ? data.message.length : "0"}</span>
         </div>
-
-        <div style={divCss}>
-            <button onClick={handlePrevPage} disabled={currentPage === 1}>Prev</button>
-            <button onClick={handleNextPage} disabled={!data.message || endIndex >= data.message.length }>
-              Next 
-            </button>
-          </div>
 
         <div style={{ height:"fit-content"}}>
             {data.message
@@ -65,13 +58,21 @@ function ShowBarcodes() {
                         </span>
                     </p>
                     </div>
-                );
-                })}
+                )
+            })}
         </div>
+        
+        <div style={divCss}>
+            <button onClick={handlePrevPage} disabled={currentPage === 1}>Prev</button>
+            <button onClick={handleNextPage} disabled={!data.message || endIndex >= data.message.length }>
+              Next 
+            </button>
+        </div>
+
         </div>
       )}
     </div>
-  );
+  )
 }
 
 export default ShowBarcodes;
