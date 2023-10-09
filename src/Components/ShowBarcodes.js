@@ -81,7 +81,7 @@ function ShowBarcodes() {
                         style={{margin:"5px",marginLeft:0}}>Prev</button> */}
                 
                 {
-                    Array.from({ length: pageCount }, (_, index) => (
+                    sortedData.length > resultsPerPage && Array.from({ length: pageCount }, (_, index) => (
                         <button key={index} 
                                 style={{margin : "5px"}} 
                                 onClick={() => {setCurrentPage(index + 1)
