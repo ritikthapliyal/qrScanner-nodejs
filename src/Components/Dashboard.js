@@ -9,7 +9,8 @@ function Dashboard() {
 
     return (
         <div className='dashboard'>
-            <button onClick={()=>{navigate('/scan')}}>Scan Barcode</button>
+            <h2 style={{color:"#4369CE",marginTop:"20px", fontSize:"20px"}}>Spandan Stock Logger</h2>
+            <button style={{width:"90%"}} onClick={()=>{navigate('/scan')}}>Scan Barcode</button>
             <ShowBarcodes/>
         </div>
     )
