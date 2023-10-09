@@ -3,14 +3,13 @@ import { useAddBarcodeMutation } from '../../store/apis/dashboardApis'
 import { useNavigate, useLocation, json } from 'react-router-dom'
 import SessionExpiredOverlay from '../SessionExpiredOverlay'
 import Loading from '../Loading'
-import { useDispatch } from 'react-redux'
-import { refresh } from '../../store/authSlice'
+
 
 function ScannedResult() {
 
     const navigate = useNavigate()
     const location = useLocation()
-    const dispatch = useDispatch()
+
     const barcodeData = location.state || {decodedText:""}
 
     const [showSessionExpired,setShowSessionExpired] = useState(false) 
@@ -26,7 +25,6 @@ function ScannedResult() {
             if(response.error && response.error.status && response.error.status === 401) {
                 setShowSessionExpired(true)
             }
-
            
             if(response.data && response.data.status && response.data.status === 201){
                 navigate('/')
@@ -41,6 +39,10 @@ function ScannedResult() {
 
     useEffect(()=>{},[barcodeData])
 
+    if(addBarcodeOptions.isError){
+        console.log(addBarcodeOptions.error)
+    }
+
     return (
         <div className='Scanner'>{
                 barcodeData.decodedText.lenght === 0
@@ -51,6 +53,10 @@ function ScannedResult() {
                 :  addBarcodeOptions.isLoading ? <Loading/> :
                     <div className='scanned_barcode'>
                         <p>Barcode : {barcodeData.decodedText}</p>
+                        {
+                            addBarcodeOptions.isError && 
+                            <span style={{color:"#ff1010"}}>Failed : {addBarcodeOptions.error.data.error}</span>
+                        }
                         <div>
                             <button onClick={()=>{navigate('/scan')}}>Scan Again</button>
                             <button onClick={handleAddBarcode}>Add Barcode</button>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useGetBarcodeQuery } from '../store/apis/dashboardApis'
 import Loading from './Loading'
 
@@ -10,27 +10,23 @@ const divCss = {
     height: 'fit-content',
 }
 
-const paginationDivCss = {
-    display:"inline-block"
-}
-
-
 function ShowBarcodes() {
 
+    const showBarcodesRef = useRef()
+    const resultsPerPage = 10
     const { data, isLoading } = useGetBarcodeQuery()
     const [currentPage, setCurrentPage] = useState(1)
-    const resultsPerPage = 6
     const [sortedData, setSortedData] = useState([])
     const startIndex = (currentPage - 1) * resultsPerPage
     const endIndex = startIndex + resultsPerPage
     
-    const handleNextPage = () => {
-        setCurrentPage(currentPage + 1)
-    }
+    // const handleNextPage = () => {
+    //     setCurrentPage(currentPage + 1)
+    // }
     
-    const handlePrevPage = () => {
-        setCurrentPage(currentPage - 1)
-    }
+    // const handlePrevPage = () => {
+    //     setCurrentPage(currentPage - 1)
+    // }
 
     const pageCount = Math.ceil(sortedData.length / resultsPerPage)
     
@@ -60,7 +56,7 @@ function ShowBarcodes() {
                     </span>
                 </div>
 
-                <div style={{ height: 'fit-content' }}>{
+                <div style={{ height: 'fit-content' }} ref={showBarcodesRef}>{
                     sortedData.slice(startIndex, endIndex).map((obj, index) => {
                         const dateObject = new Date(obj.timeStamp)
                         const formattedTime = dateObject.toLocaleTimeString()
@@ -77,14 +73,19 @@ function ShowBarcodes() {
                         )})}
                 </div>
 
-            <div style={paginationDivCss}>
+            <div style={{display:"inline-block"}}>
                 
                 {/* <button onClick={handlePrevPage} 
                         style={{margin:"5px",marginLeft:0}}>Prev</button> */}
                 
                 {
                     Array.from({ length: pageCount }, (_, index) => (
-                        <button  style={{margin : "5px"}} key={index} onClick={() => setCurrentPage(index + 1)}>{index + 1}</button>))
+                        <button key={index} 
+                                style={{margin : "5px"}} 
+                                onClick={() => {setCurrentPage(index + 1)
+                                    showBarcodesRef.current.scrollIntoView({ behavior: 'smooth' })}}>
+                                {index + 1}
+                        </button>))
                 }
                 
                 {/* <button onClick={handleNextPage} 
