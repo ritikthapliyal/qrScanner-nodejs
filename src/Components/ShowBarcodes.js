@@ -3,9 +3,9 @@ import { useGetBarcodeQuery } from '../store/apis/dashboardApis';
 import Loading from './Loading';
 const divCss = {
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyContent: 'space-between',
   height: 'fit-content',
 };
 function ShowBarcodes() {
