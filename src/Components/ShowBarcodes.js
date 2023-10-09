@@ -12,7 +12,10 @@ function ShowBarcodes() {
             }
             {
                 data && data.message && <div><h3>History :</h3>{data.message.map((obj,index)=>{
-                    return <p key={index}>{obj.barcode}</p>
+                    return <div key={index}>
+                        <p>Barcode : {obj.barcode}</p>
+                        <p>Scanned On : {obj.timeStamp}</p>
+                    </div>
                 })}</div>
             }
         </div>

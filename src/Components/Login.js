@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom"
 import { useLoginMutation } from "../store/apis/authApis"
 import { useDispatch } from "react-redux"
 import { setAuthState } from "../store/authSlice"
-import Loading from "./Loading"
 
 
 export default function Login(){
