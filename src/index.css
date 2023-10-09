@@ -148,11 +148,13 @@ html,body,#root,.App{
 @media screen and (max-width: 460px) {
     
     .loginform{
-        width: 15rem;
-        height: 19rem;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
         border-radius: 1rem;
         gap: 1.2rem;
         padding: .6rem;
+        border-radius: 0;
     }
     
     .login-input-div{
@@ -185,6 +187,8 @@ html,body,#root,.App{
         padding: .5rem 1rem;
         border: 1px solid black;
         font-size: .8rem;
+        width: 150px;
+        margin-top: 30px;
     }
 
 
@@ -192,21 +196,22 @@ html,body,#root,.App{
 
 
     .dashboard{
-        width: 16rem;
-        height: 26rem;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
     }
     .show-barcodes{
         height: 80%;
-        width: 90%;
+        width: 95%;
     }
     .dashboard h3{
         font-size: 1rem;
     }
     .show-barcodes div{
-        gap: .4rem;
+        gap: .6rem;
     }
     .show-barcodes div p{
-        padding: .3rem;
+        padding: .6rem;
         font-size: 0.8rem;
     }
 

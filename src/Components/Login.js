@@ -10,8 +10,8 @@ export default function Login(){
 
     const dispatch = useDispatch()
     const navigate=useNavigate()
-    const[username,setUsername]=useState("tanya")
-    const[password,setPassword]=useState("bishtt")
+    const[username,setUsername]=useState("")
+    const[password,setPassword]=useState("")
     const passwordInputRef = useRef(null)
     const usernameInputRef = useRef(null)
     
