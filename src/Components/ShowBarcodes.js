@@ -83,14 +83,16 @@ function ShowBarcodes() {
 
             <div style={paginationDivCss}>
                 
-                <button onClick={handlePrevPage} disabled={currentPage === 1} style={paginationButton}>Prev</button>
+                <button onClick={handlePrevPage} 
+                        style={{margin:"5px",marginLeft:0}}>Prev</button>
                 
                 {
                     Array.from({ length: pageCount }, (_, index) => (
                         <button  style={paginationButton} key={index} onClick={() => setCurrentPage(index + 1)}>{index + 1}</button>))
                 }
                 
-                <button onClick={handleNextPage} disabled={currentPage === pageCount} style={paginationButton}>Next</button>
+                <button onClick={handleNextPage} 
+                        style={{margin:"5px",marginRight:0}}>Next</button>
 
             </div>
             </div>
