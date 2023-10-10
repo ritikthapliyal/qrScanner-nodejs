@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit"
 
 const initialState = {
     isLoggedIn : false,
-    shouldRefresh : false
+    barcodes : []
 }
 
 const authSlice = createSlice({
@@ -10,10 +10,16 @@ const authSlice = createSlice({
     initialState : initialState,
     reducers: {
         setAuthState(state,{payload}){
-            return {...payload}
+            return {...state,...payload}
+        },
+        setBarcodes(state,{payload}){
+            return {...state,barcodes:payload}
+        },
+        addLatestBarcode(state,{payload}){
+            return{...state,barcodes:[payload,...state.barcodes]}
         }
     }
 })
 
-export const {setAuthState} = authSlice.actions
+export const {setAuthState,setBarcodes,addLatestBarcode} = authSlice.actions
 export default authSlice.reducer

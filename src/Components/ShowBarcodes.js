@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useGetBarcodeQuery } from '../store/apis/dashboardApis'
 import Loading from './Loading'
+import { useDispatch,useSelector } from 'react-redux'
+import { setBarcodes } from '../store/authSlice'
 
 const divCss = {
     display: 'flex',
@@ -12,31 +14,23 @@ const divCss = {
 
 function ShowBarcodes() {
 
+    const dispatch = useDispatch()
     const showBarcodesRef = useRef()
     const resultsPerPage = 10
     const { data, isLoading } = useGetBarcodeQuery()
     const [currentPage, setCurrentPage] = useState(1)
-    const [sortedData, setSortedData] = useState([])
+    const sortedData = useSelector((state) => state.authSlice.barcodes)
     const startIndex = (currentPage - 1) * resultsPerPage
     const endIndex = startIndex + resultsPerPage
-    
-    // const handleNextPage = () => {
-    //     setCurrentPage(currentPage + 1)
-    // }
-    
-    // const handlePrevPage = () => {
-    //     setCurrentPage(currentPage - 1)
-    // }
 
     const pageCount = Math.ceil(sortedData.length / resultsPerPage)
-    
     
     useEffect(() => {
         if (data && data.message) {
             const sorted = data.message.slice().sort((a, b) => {
                 return new Date(b.timeStamp) - new Date(a.timeStamp)
             })
-            setSortedData(sorted)
+            dispatch(setBarcodes(sorted))
         }
     }, [data])
 
@@ -77,9 +71,6 @@ function ShowBarcodes() {
 
             <div style={{display:"inline-block"}}>
                 
-                {/* <button onClick={handlePrevPage} 
-                        style={{margin:"5px",marginLeft:0}}>Prev</button> */}
-                
                 {
                     sortedData.length > resultsPerPage && Array.from({ length: pageCount }, (_, index) => (
                         <button key={index} 
@@ -89,9 +80,6 @@ function ShowBarcodes() {
                                 {index + 1}
                         </button>))
                 }
-                
-                {/* <button onClick={handleNextPage} 
-                        style={{margin:"5px",marginRight:0}}>Next</button> */}
 
             </div>
             </div>
