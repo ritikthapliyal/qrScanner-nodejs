@@ -22,7 +22,8 @@ function ScannedResult() {
     const handleAddBarcode = async()=>{
 
         try{
-            const response = await addBarcode(location.state)
+            // const response = await addBarcode(location.state)
+            const response = await addBarcode({result:{text:"hahaaaa",format:{formatNmae:"haha"}}})
             console.log(response)
 
             if(response.error && response.error.status && response.error.status === 401) {
