@@ -12,15 +12,15 @@ function Scanner() {
     }
 
     return (
-        <Fragment>
+        // <Fragment>
             <Html5QrcodePlugin
                 fps={10}
                 qrbox={250}
                 disableFlip={false}
                 qrCodeSuccessCallback={onNewScanResult}>
             </Html5QrcodePlugin>
-            <button onClick={()=>{ navigate('/scanned-result')}}>click me</button>
-        </Fragment>
+            // {/* <button onClick={()=>{ navigate('/scanned-result')}}>click me</button> */}
+        // {/* </Fragment> */}
             
     )
 }

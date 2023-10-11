@@ -3,13 +3,10 @@ import { useAddBarcodeMutation } from '../../store/apis/dashboardApis'
 import { useNavigate, useLocation } from 'react-router-dom'
 import SessionExpiredOverlay from '../SessionExpiredOverlay'
 import Loading from '../Loading'
-import { addLatestBarcode } from '../../store/authSlice'
-import { useDispatch } from 'react-redux'
 
 
 function ScannedResult() {
 
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
 

@@ -25,7 +25,6 @@ function ShowBarcodes() {
   const pageCount = Math.ceil(sortedData.length / resultsPerPage)
 
   useEffect(() => {
-    // Use Axios to fetch data
     axios.get('https://efce1xom36.execute-api.ap-south-1.amazonaws.com/dev/dashboard',{headers: {Authorization: localStorage.getItem('token') || "token"}})
       .then((response) => {
         const sorted = response.data.message.slice().sort((a, b) => {
