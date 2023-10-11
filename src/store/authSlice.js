@@ -8,19 +8,8 @@ const initialState = {
 const authSlice = createSlice({
     name: 'authSlice',
     initialState : initialState,
-    reducers: {
-        setAuthState(state,{payload}){
-            return {...state,...payload}
-        },
-        setBarcodes(state,{payload}){
-            return {...state,barcodes:payload}
-        },
-        addLatestBarcode(state,{payload}){
-            console.log(payload)
-            return {...state,barcodes:[payload,...state.barcodes]}
-        }
-    }
+    reducers: {setAuthState(state,{payload}){return {...state,...payload}}}
 })
 
-export const {setAuthState,setBarcodes,addLatestBarcode} = authSlice.actions
+export const {setAuthState} = authSlice.actions
 export default authSlice.reducer

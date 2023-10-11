@@ -7,25 +7,13 @@ export const dashboardApi = createApi({
     }),
     endpoints(builder){
         return {
-            getBarcode : builder.query({ 
-                query: () => { 
-                  return {
-                    url: '/dashboard',
-                    method: 'GET',
-                    headers: {
-                        Authorization: localStorage.getItem('token') || "token",
-                    },  
-                  }
-                },
-            }),
             addBarcode : builder.mutation({ 
-                query: (data) => { 
+                query: (data) => {
                   return {
                     url: '/dashboard',
                     method: 'POST',
                     headers: {
-                        Authorization: localStorage.getItem('token') || "token"
-                    },
+                        Authorization: localStorage.getItem('token') || "token"},
                     body: { data }   
                   }
                 },
@@ -34,4 +22,4 @@ export const dashboardApi = createApi({
     }
 })
 
-export const {useAddBarcodeMutation, useGetBarcodeQuery } = dashboardApi
+export const {useAddBarcodeMutation } = dashboardApi

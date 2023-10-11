@@ -19,7 +19,7 @@ function ShowBarcodes() {
   const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
-  const sortedData = useSelector((state) => state.authSlice.barcodes)
+  const [sortedData,setSortedData] = useState([])
   const startIndex = (currentPage - 1) * resultsPerPage
   const endIndex = startIndex + resultsPerPage
   const pageCount = Math.ceil(sortedData.length / resultsPerPage)
@@ -32,7 +32,7 @@ function ShowBarcodes() {
         })
         setData(sorted)
         setIsLoading(false)
-        dispatch(setBarcodes(sorted))
+        setSortedData(sorted)
       })
       .catch((error) => {
         console.error('Error fetching data:', error)

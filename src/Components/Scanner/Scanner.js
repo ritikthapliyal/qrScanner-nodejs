@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React from 'react'
 import './Css.css'
 import Html5QrcodePlugin from './Html5Qr'
 import { useNavigate } from 'react-router-dom'
@@ -12,16 +12,12 @@ function Scanner() {
     }
 
     return (
-        // <Fragment>
             <Html5QrcodePlugin
                 fps={10}
                 qrbox={250}
                 disableFlip={false}
                 qrCodeSuccessCallback={onNewScanResult}>
             </Html5QrcodePlugin>
-            // {/* <button onClick={()=>{ navigate('/scanned-result')}}>click me</button> */}
-        // {/* </Fragment> */}
-            
     )
 }
 
