@@ -16,7 +16,8 @@ const authSlice = createSlice({
             return {...state,barcodes:payload}
         },
         addLatestBarcode(state,{payload}){
-            return{...state,barcodes:[payload,...state.barcodes]}
+            console.log(payload)
+            return {...state,barcodes:[payload,...state.barcodes]}
         }
     }
 })
