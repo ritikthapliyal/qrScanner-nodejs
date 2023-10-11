@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import Loading from './Loading'
-import { useDispatch, useSelector } from 'react-redux'
-import { setBarcodes } from '../store/authSlice'
 
 const divCss = {
   display: 'flex',
@@ -13,10 +11,9 @@ const divCss = {
 }
 
 function ShowBarcodes() {
-  const dispatch = useDispatch()
+  
   const showBarcodesRef = useRef()
   const resultsPerPage = 10
-  const [data, setData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
   const [sortedData,setSortedData] = useState([])
@@ -30,7 +27,6 @@ function ShowBarcodes() {
         const sorted = response.data.message.slice().sort((a, b) => {
           return new Date(b.timeStamp) - new Date(a.timeStamp)
         })
-        setData(sorted)
         setIsLoading(false)
         setSortedData(sorted)
       })
